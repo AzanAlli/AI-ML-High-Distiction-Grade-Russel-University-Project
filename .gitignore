@@ -1,0 +1,5 @@
+# Ignore large model weights
+*.h5
+*.dylib
+# Ignore virtual environment
+venv/
