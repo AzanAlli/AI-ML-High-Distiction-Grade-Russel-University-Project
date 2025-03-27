@@ -1,0 +1,18 @@
+echo "Model Weights Download Instructions
+-------------------------------------
+Due to GitLab's 100MB file size limit, the following model weights have been removed from this repository.
+
+Please download them from the OneDrive folder below:
+
+🔗 OneDrive Folder: https://uniofleicester-my.sharepoint.com/:f:/r/personal/sa1021_student_le_ac_uk/Documents/FinalProjectModelWeights?csf=1&web=1&e=LE5oGW
+
+After downloading, place all files into:
+    deepface_backup/weights/
+
+Required files:
+- age_model_weights.h5
+- arcface_weights.h5
+- gender_model_weights.h5
+- race_model_single_batch.h5
+- vgg_face_weights.h5
+" > MODEL_DOWNLOAD.txt
