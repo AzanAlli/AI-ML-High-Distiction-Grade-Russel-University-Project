@@ -1,5 +1,17 @@
-# Ignore large model weights
+# Python cache
+__pycache__/
+*.pyc
+
+# macOS junk
+.DS_Store
+
+# IDE/project folders
+.idea/
+.vscode/
+
+# Models / weights
 *.h5
 *.dylib
-# Ignore virtual environment
+
+# Virtual environments
 venv/

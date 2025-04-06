@@ -26,11 +26,17 @@ def get_face_info(im):
         for box_face in boxes_face:
             box_face_fc = box_face
             x0,y1,x1,y0 = box_face
-            padding = 40
-            x0 = max(x0 - padding, 0)
-            y0 = max(y0 - padding, 0)
-            x1 = min(x1 + padding, im.shape[0])
-            y1 = min(y1 + padding, im.shape[1])
+            # Calculate percentage-based padding
+            face_height = x1 - x0
+            face_width = y1 - y0
+            padding_h = int(face_height * 0.25)
+            padding_w = int(face_width * 0.25)
+
+            # Apply padding to the bounding box
+            x0 = max(x0 - padding_h, 0)
+            y0 = max(y0 - padding_w, 0)
+            x1 = min(x1 + padding_h, im.shape[0])
+            y1 = min(y1 + padding_w, im.shape[1])
             box_face = np.array([y0,x0,y1,x1])
             face_features = {
                 "name":[],
@@ -76,40 +82,32 @@ def get_face_info(im):
 
 
 
-def bounding_box(out,img):
+def bounding_box(out, img):
     for data_face in out:
         box = data_face["bbx_frontal_face"]
         if len(box) == 0:
             continue
         else:
-            x0,y0,x1,y1 = box
-            img = cv2.rectangle(img,
-                            (x0,y0),
-                            (x1,y1),
-                            (225,255,0),2);
-            thickness = 1
-            fontSize = 0.5
-            step = 13
+            x0, y0, x1, y1 = box
+            img = cv2.rectangle(img, (x0, y0), (x1, y1), (225, 255, 0), 2)
 
-            try:
-                cv2.putText(img, "age: " +data_face["age"], (x0, y0-7), cv2.FONT_HERSHEY_SIMPLEX, fontSize, (255,255,255), thickness)
-            except:
-                pass
-            try:
-                cv2.putText(img, "gender: " +data_face["gender"], (x0, y0-step-10*1), cv2.FONT_HERSHEY_SIMPLEX, fontSize, (0,255,255), thickness)
-            except:
-                pass
-            try:
-                cv2.putText(img, "race: " +data_face["race"], (x0, y0-step-10*2), cv2.FONT_HERSHEY_SIMPLEX, fontSize, (255,0,255), thickness)
-            except:
-                pass
-            try:
-                cv2.putText(img, "emotion: " +data_face["emotion"], (x0, y0-step-10*3), cv2.FONT_HERSHEY_SIMPLEX, fontSize, (0,0,255), thickness)
-            except:
-                pass
-            try:
-                cv2.putText(img, "name: " +data_face["name"], (x0, y0-step-10*4), cv2.FONT_HERSHEY_SIMPLEX, fontSize, (0,255,0), thickness)
-            except:
-                pass
+            thickness = 2
+            fontSize = 0.6
+            line_spacing = 22  # spacing between lines
+            y_text_start = y0 - 10
+
+            labels = [
+                ("age: " + data_face["age"], (0, 165, 255)),      # orange
+                ("gender: " + data_face["gender"], (139, 0, 0)),  # dark blue
+                ("race: " + data_face["race"], (255, 0, 255)),    # magenta
+                ("emotion: " + data_face["emotion"], (0, 0, 255)),# red
+                ("name: " + data_face["name"], (0, 255, 0))       # green
+            ]
+
+            for i, (text, color) in enumerate(labels):
+                try:
+                    y = y_text_start - (i * line_spacing)
+                    cv2.putText(img, text, (x0, y), cv2.FONT_HERSHEY_SIMPLEX, fontSize, color, thickness)
+                except:
+                    continue
     return img
-

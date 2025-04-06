@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-Time Face Info</title>
+    <style>
+        body {
+            background: url('my_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: sans-serif;
+            text-align: center;
+            color: white;
+            margin-top: 100px;
+        }
+
+        button {
+            display: block;
+            width: 300px;
+            margin: 20px auto;
+            padding: 15px;
+            font-size: 18px;
+            background-color: #001f3f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0074D9;
+        }
+
+        #imageUpload {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<h1>REAL-TIME FACE PREDICTION</h1>
+
+<!-- Buttons -->
+<button onclick="runPrediction('webcam')">REAL TIME DETECTION</button>
+<button onclick="runPrediction('video')">VIDEO PREDICTION</button>
+<button onclick="document.getElementById('imageUpload').click()">PREDICT IMAGE</button>
+
+<!-- Hidden file input -->
+<input type="file" id="imageUpload" accept="image/*" onchange="sendImage(event)">
+
+<script>
+    function runPrediction(inputType) {
+        fetch('http://127.0.0.1:5050/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ input_type: inputType })
+        }).then(res => console.log("Launched:", inputType));
+    }
+
+    function sendImage(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const relativePath = "images_db/" + file.name;
+
+        fetch('http://127.0.0.1:5050/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ input_type: "image", image_path: relativePath })
+        }).then(res => console.log("Launched image:", relativePath));
+    }
+</script>
+</body>
+</html>
