@@ -44,7 +44,7 @@ To run the backend manually without frontend:
 ```bash
 python Face_info.py --input webcam        # Real-time webcam detection
 python Face_info.py --input video         # Prediction on demo.mp4
-python Face_info.py --input image --path_im images_db/person1.jpg  # Prediction on an image
+python Face_info.py --input image --path_im images_db/[filename].jpg  # Prediction on an image
 ```
 
 Press `q` in any prediction window to close it and return to the terminal.
