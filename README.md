@@ -98,3 +98,5 @@ PREDICT IMAGE: Lets you select a JPG image from your `images_db` directory
 - `images_db/`: Folder where your test `.jpg` images should be placed
 
 ---
+
+please note: The key `q` does take some seconds to quit when doing real time facial predictions (5-15sec) and run time for all predictions does take 3-5 seconds
