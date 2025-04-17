@@ -87,4 +87,4 @@ http://127.0.0.1:5050/
 - deepface_backup/weights/: Folder containing required model weight files
 - images_db/: Folder where your test .jpg images should be placed
 
-Note: The key `q` may take several seconds (5–15s) to quit real-time facial prediction mode. Runtime for each prediction typically takes 3–5 seconds.
+Note: The key `q` may take several seconds (5–10s) to quit real-time facial prediction mode. Runtime for each prediction typically takes 5–15 seconds.

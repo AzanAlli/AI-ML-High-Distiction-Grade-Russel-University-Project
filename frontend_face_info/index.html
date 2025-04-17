@@ -2,48 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Real-Time Face Info</title>
+    <title>Real-Time Facial Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
-            background: url('my_background.jpg') no-repeat center center fixed;
-            background-size: cover;
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
             font-family: sans-serif;
-            text-align: center;
             color: white;
-            margin-top: 100px;
+            overflow: hidden;
         }
 
-        button {
-            display: block;
-            width: 300px;
-            margin: 20px auto;
-            padding: 15px;
-            font-size: 18px;
+        body {
+            background-image: url('/static/my_background.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        .button-box {
+            position: absolute;
+            top: 65%;
+            left: 12.5%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .button-box button {
+            width: 280px;
+            margin: 10px 0;
+            padding: 14px;
+            font-size: 17px;
             background-color: #001f3f;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease;
         }
 
-        button:hover {
+        .button-box button:hover {
             background-color: #0074D9;
+        }
+
+        .exit-button {
+            margin-top: 40px;
         }
 
         #imageUpload {
             display: none;
         }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .button-box {
+                top: 60%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                align-items: center;
+            }
+
+            .button-box button {
+                width: 90vw;
+                font-size: 16px;
+            }
+
+            .exit-button {
+                margin-top: 30px;
+            }
+        }
     </style>
 </head>
 <body>
-<h1>REAL-TIME FACE PREDICTION</h1>
 
-<!-- Buttons -->
-<button onclick="runPrediction('webcam')">REAL TIME DETECTION</button>
-<button onclick="runPrediction('video')">VIDEO PREDICTION</button>
-<button onclick="document.getElementById('imageUpload').click()">PREDICT IMAGE</button>
+<div class="button-box">
+    <button onclick="runPrediction('webcam')">REAL TIME DETECTION</button>
+    <button onclick="runPrediction('video')">VIDEO PREDICTION</button>
+    <button onclick="document.getElementById('imageUpload').click()">PREDICT IMAGE</button>
+    <button class="exit-button" onclick="exitApp()">EXIT</button>
+</div>
 
-<!-- Hidden file input -->
 <input type="file" id="imageUpload" accept="image/*" onchange="sendImage(event)">
 
 <script>
@@ -66,6 +110,10 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ input_type: "image", image_path: relativePath })
         }).then(res => console.log("Launched image:", relativePath));
+    }
+
+    function exitApp() {
+        window.close();
     }
 </script>
 </body>
