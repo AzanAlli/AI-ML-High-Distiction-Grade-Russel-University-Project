@@ -18,8 +18,11 @@ if type_input == 'image':
         print(f"Error: Could not load image from {args['path_im']}")
         exit(1)
 
+    frame = imutils.resize(frame, width=1000)
+
     out = rtfprediction.get_face_info(frame)
     res_img = rtfprediction.bounding_box(out, frame)
+
     cv2.imshow('Face info - Press q to quit', res_img)
 
     while True:

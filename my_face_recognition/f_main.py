@@ -1,4 +1,4 @@
-from my_face_recognition import f_face_recognition as rec_face
+from my_face_recognition import facial_recognition as rec_face
 from my_face_recognition import f_storage as st
 import traceback
 import numpy as np
