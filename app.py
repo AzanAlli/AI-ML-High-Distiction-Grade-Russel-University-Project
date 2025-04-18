@@ -1,7 +1,6 @@
 from flask_cors import CORS
 from flask import Flask, request, jsonify, send_from_directory
 import subprocess
-import os
 
 app = Flask(__name__, static_folder="frontend_face_info/static", static_url_path="/static")
 CORS(app)

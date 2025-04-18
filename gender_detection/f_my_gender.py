@@ -1,8 +1,6 @@
 #from basemodels import VGGFace
 from deepface.basemodels import VGGFace
 import os
-from pathlib import Path
-import gdown
 import numpy as np
 from tensorflow.keras.models import Model, Sequential
 from tensorflow.keras.layers import Conv2D, Flatten, Activation

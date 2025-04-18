@@ -2,8 +2,6 @@
 # tenserflow is used for image classification and object detection and keras is an api
 from deepface.basemodels import VGGFace # Import the VGGFace model from DeepFace
 import os
-from pathlib import Path # Used for handling file paths
-import gdown # Used for downloading files from Google Drive
 import numpy as np
 from tensorflow.keras.models import Model, Sequential
 from tensorflow.keras.layers import Conv2D, Flatten, Activation
