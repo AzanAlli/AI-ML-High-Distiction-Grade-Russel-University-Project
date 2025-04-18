@@ -1,18 +1,18 @@
 import cv2
 import numpy as np
 import face_recognition
-from age_detection import f_my_age
-from gender_detection import f_my_gender
-from race_detection import f_my_race
-from emotion_detection import f_emotion_detection
+from age_detection import age_pred
+from gender_detection import gender_prediction
+from race_detection import race_prediction
+from emotion_detection import emotion_prediction
 from my_face_recognition import f_main
 
 
 
-age_detector = f_my_age.Age_Model()
-gender_detector =  f_my_gender.Gender_Model()
-race_detector = f_my_race.Race_Model()
-emotion_detector = f_emotion_detection.predict_emotions()
+age_detector = age_pred.Age_Model()
+gender_detector =  gender_prediction.Gender_Model()
+race_detector = race_prediction.Race_Model()
+emotion_detector = emotion_prediction.predict_emotions()
 rec_face = f_main.rec()
 #----------------------------------------------
 
