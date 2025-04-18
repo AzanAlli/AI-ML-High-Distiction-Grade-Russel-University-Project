@@ -53,7 +53,7 @@ elif type_input == 'webcam':
 
 # ----------------------------- video -----------------------------
 elif type_input == 'video':
-    cam = cv2.VideoCapture("demo.mp4")
+    cam = cv2.VideoCapture("videofile.mp4")
     if not cam.isOpened():
         print("Error: Could not open video file.")
         exit(1)

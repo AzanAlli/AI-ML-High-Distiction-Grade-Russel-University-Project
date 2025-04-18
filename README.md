@@ -36,7 +36,7 @@ Refer to `MODEL_DOWNLOAD.txt` for instructions as well.
 
 This system supports three modes of prediction:
 - Real-time webcam detection
-- Video file prediction (e.g. demo.mp4)
+- Video file prediction (e.g. videofile.mp4)
 - Static image prediction (e.g. JPG files in images_db/)
 
 ### Run the Backend Directly
@@ -45,8 +45,8 @@ To run the backend manually without frontend:
 
 ```bash
 python Face_info.py --input webcam        # Real-time webcam detection
-python Face_info.py --input video         # Prediction on demo.mp4
-python Face_info.py --input image --path_im images_db/[filename].jpg  # Prediction on an image
+python Face_info.py --input video         # Prediction on videofile.mp4
+python Face_info.py --input image --path_im images_db/[filename].jpg  # Prediction on an image (images_db has been provided)
 ```
 
 Press `q` in any prediction window to close it and return to the terminal.
@@ -68,7 +68,7 @@ http://127.0.0.1:5050/
 3. Use the interface buttons:
 
 - REAL TIME DETECTION: Opens webcam window for live face analysis
-- VIDEO PREDICTION: Starts prediction on demo.mp4 (make sure this file exists)
+- VIDEO PREDICTION: Starts prediction on videofile.mp4 (make sure this file exists)
 - PREDICT IMAGE: Lets you select a JPG image from your images_db directory
 
 ### 3) Notes on Usage
