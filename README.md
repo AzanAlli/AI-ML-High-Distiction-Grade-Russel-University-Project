@@ -87,4 +87,4 @@ http://127.0.0.1:5050/
 - deepface_backup/weights/: Folder containing required model weight files
 - images_db/: Folder where your test .jpg images should be placed
 
-Note: Runtime for each prediction typically takes around 90 seconds (reasons have been provided in dissertation, and reflections of improvements).
+Note: Runtime for each prediction typically takes a couple a seconds (approx 5-10 seconds) due to the 2 npy files that have saved image data.
