@@ -44,8 +44,8 @@ def get_face_info(im):
                 "gender":[],
                 "race":[],
                 "emotion":[],
-                "bbx_frontal_face":box_face             
-            } 
+                "bbx_frontal_face":box_face
+            }
 
             face_image = im[x0:x1,y0:y1]
 
@@ -66,7 +66,7 @@ def get_face_info(im):
             _,emotion = emotion_detector.get_emotion(im,[box_face])
             face_features["emotion"] = emotion[0]
 
-            # -------------------------------------- out ---------------------------------------       
+            # -------------------------------------- out ---------------------------------------
             out.append(face_features)
     else:
         face_features = {
@@ -75,7 +75,7 @@ def get_face_info(im):
             "gender":[],
             "race":[],
             "emotion":[],
-            "bbx_frontal_face":[]             
+            "bbx_frontal_face":[]
         }
         out.append(face_features)
     return out
