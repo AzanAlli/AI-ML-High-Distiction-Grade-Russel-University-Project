@@ -73,7 +73,6 @@ http://127.0.0.1:5050/
 
 ### 3) Notes on Usage
 
-- Only one prediction mode can run at a time. If switching modes, close the previous prediction window first.
 - To use image prediction, ensure your .jpg files are inside the images_db/ folder.
 - Press `q` in any prediction window to safely close it.
 - Press Ctrl + C in the terminal window. This will safely terminate the Flask backend or stop any Python process started through the frontend.
