@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Real-Time Facial Prediction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Internal CSS for page styling -->
     <style>
         html, body {
             margin: 0;
@@ -11,18 +12,18 @@
             height: 100%;
             font-family: sans-serif;
             color: white;
-            overflow: hidden;
+            overflow: hidden; /* Prevent scrollbars */
         }
 
         body {
-            background-image: url('/static/my_background.jpg');
+            background-image: url('/static/my_background.jpg'); /* Background image */
             background-repeat: no-repeat;
             background-position: center center;
             background-attachment: fixed;
             background-size: cover;
             position: relative;
         }
-
+        /* Button container positioning and layout */
         .button-box {
             position: absolute;
             top: 65%;
@@ -32,7 +33,7 @@
             flex-direction: column;
             align-items: flex-start;
         }
-
+        /* Styling for all buttons in the button-box */
         .button-box button {
             width: 280px;
             margin: 10px 0;
@@ -46,13 +47,13 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             transition: background-color 0.3s ease;
         }
-
+        /* Hover effect for buttons */
         .button-box button:hover {
-            background-color: #0074D9;
+            background-color: #0074D9; /* Lighter blue */
         }
 
         .exit-button {
-            margin-top: 40px;
+            margin-top: 40px; /* Spacing for Exit button */
         }
 
         #imageUpload {
@@ -81,6 +82,7 @@
 </head>
 <body>
 
+<!-- Main button interface for prediction types -->
 <div class="button-box">
     <button onclick="runPrediction('webcam')">REAL TIME DETECTION</button>
     <button onclick="runPrediction('video')">VIDEO PREDICTION</button>
@@ -90,17 +92,18 @@
 
 <input type="file" id="imageUpload" accept="image/*" onchange="sendImage(event)">
 
+<!-- JavaScript functionality -->
 <script>
     function runPrediction(inputType) {
         fetch('http://127.0.0.1:5050/predict', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ input_type: inputType })
+            body: JSON.stringify({ input_type: inputType }) // Send input type to backend
         }).then(res => console.log("Launched:", inputType));
     }
 
     function sendImage(event) {
-        const file = event.target.files[0];
+        const file = event.target.files[0]; // Get selected file
         if (!file) return;
 
         const relativePath = "images_db/" + file.name;
@@ -108,7 +111,7 @@
         fetch('http://127.0.0.1:5050/predict', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ input_type: "image", image_path: relativePath })
+            body: JSON.stringify({ input_type: "image", image_path: relativePath }) // Send image path
         }).then(res => console.log("Launched image:", relativePath));
     }
 

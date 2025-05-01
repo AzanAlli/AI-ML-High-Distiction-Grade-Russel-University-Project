@@ -24,17 +24,17 @@ class Gender_Model():
 
     def loadModel(self):
         model = VGGFace.baseModel()
-        #--------------------------
+
         # Modify the model to classify between two genders
         classes = 2
         base_model_output = Sequential()
         base_model_output = Conv2D(classes, (1, 1), name='predictions')(model.layers[-4].output)
         base_model_output = Flatten()(base_model_output)
         base_model_output = Activation('softmax')(base_model_output)
-        #--------------------------
+
         # Create the final model
         gender_model = Model(inputs=model.input, outputs=base_model_output)
-        #--------------------------
+
         #load weights
         weight_path = "/Users/Azan/Documents/1UNI Computing and Mathematical sciences/3rd yr/2 SEM/Comp project/Project main/rtfprediction_face_info/deepface_backup/weights/gender_model_weights.h5"
 
@@ -43,7 +43,7 @@ class Gender_Model():
 
         gender_model.load_weights(weight_path)
         return gender_model
-        #--------------------------
+
 
     def transform_face_array2gender_face(self,face_array,grayscale=False,target_size = (224, 224)):
         detected_face = face_array

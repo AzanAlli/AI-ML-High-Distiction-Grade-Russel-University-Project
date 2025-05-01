@@ -14,7 +14,6 @@ gender_detector =  gender_prediction.Gender_Model()
 race_detector = race_prediction.Race_Model()
 emotion_detector = emotion_prediction.predict_emotions()
 rec_face = f_main.rec()
-#----------------------------------------------
 
 
 
